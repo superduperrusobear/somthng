@@ -1,0 +1,9 @@
+# Only the static site is published; homelab files stay local
+.env
+.env.*
+docker-compose.yml
+authelia/
+autheliaconfiguration.yml
+csp.yaml
+opc
+sa

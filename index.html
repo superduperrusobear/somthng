@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>open somthng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0a0a0a',
+                            text: '#ffffff',
+                            muted: 'rgba(255,255,255,0.4)',
+                            success: '#30d158',
+                            error: '#ff453a'
+                        },
+                        light: {
+                            bg: '#f5f5f7',
+                            text: '#1d1d1f',
+                            muted: 'rgba(0,0,0,0.4)',
+                            success: '#34c759',
+                            error: '#ff3b30'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+            transition: background-color 0.6s ease, color 0.6s ease;
+        }
+        
+        .app-link img {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        
+        .app-link:hover img {
+            transform: scale(1.06);
+            opacity: 0.95;
+        }
+        
+        /* Performance: GPU acceleration */
+        .gpu {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-dark-text dark:bg-dark-bg dark:text-dark-text bg-light-bg text-light-text min-h-screen flex flex-col relative overflow-hidden">
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity" aria-label="Toggle theme">
+        <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+    </button>
+
+    <!-- Hero: vertically centered as one block; extra gap pushes the app row below the title -->
+    <main class="flex-1 flex flex-col items-center justify-center w-full min-h-0 px-6 py-12 md:py-16">
+        <div class="flex w-full max-w-5xl flex-col items-center gap-16 md:gap-20 lg:gap-24">
+            <h1 class="text-center leading-[0.95] font-extralight tracking-tight opacity-95 select-none w-full max-w-[min(100%,48rem)]">
+                <span class="block text-[clamp(1.35rem,4.5vw,2.75rem)] font-light tracking-[0.2em] mb-3 md:mb-4 opacity-90">open</span>
+                <span class="block text-[clamp(3rem,12vw,9rem)] tracking-tight">somthng</span>
+            </h1>
+            <div class="flex flex-wrap justify-center gap-10 md:gap-14 w-full" id="apps-container">
+                <!-- Apps injected via JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Removed footer ticker -->
+
+    <script>
+        const apps = [
+            { id: 'view',  name: 'VIEW',  url: 'https://view.somthng.xyz',  imgDark: 'images/immich-dark.webp',    imgLight: 'images/immich-light.webp' },
+            { id: 'store', name: 'STORE', url: 'https://store.somthng.xyz', imgDark: 'images/owncloud-dark.webp', imgLight: 'images/owncloud-light.webp' },
+            { id: 'watch', name: 'WATCH', url: 'https://watch.somthng.xyz', imgDark: 'images/jellyfin-dark.webp',  imgLight: 'images/jellyfin-light.webp' },
+            { id: 'open',  name: 'OPEN',  url: 'https://open.somthng.xyz',  imgDark: 'images/authentik-dark.webp', imgLight: 'images/authentik-light.webp' },
+            { id: 'keep',  name: 'KEEP',  url: 'https://keep.somthng.xyz',  imgDark: 'images/vaultwarden.webp',      imgLight: 'images/vaultwarden-light.webp' }
+        ];
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.classList.remove('dark');
+        }
+
+        function renderApps() {
+            const isDark = html.classList.contains('dark');
+            const container = document.getElementById('apps-container');
+            container.innerHTML = apps.map(app => {
+                const src = isDark ? app.imgLight : app.imgDark;
+                const inner = `<img src="${src}" alt="${app.name}" class="w-16 h-16 md:w-[4.5rem] md:h-[4.5rem] object-contain" />`;
+                return `
+                <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="app-link group flex flex-col items-center gap-3 cursor-pointer gpu">
+                    ${inner}
+                    <span class="text-xs md:text-sm font-medium tracking-[0.2em] text-black dark:text-white transition-colors">${app.name}</span>
+                </a>`;
+            }).join('');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            renderApps();
+        });
+
+        renderApps();
+    </script>
+</body>
+</html>
