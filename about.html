@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about · somthng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: { bg: '#0a0a0a', text: '#ffffff' },
+                        light: { bg: '#f5f5f7', text: '#1d1d1f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .gallery figure {
+            margin: 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            background: rgba(127, 127, 127, 0.1);
+            cursor: zoom-in;
+            transition: opacity 0.15s ease;
+        }
+
+        .gallery img:hover {
+            opacity: 0.88;
+        }
+
+        .gallery figcaption {
+            margin-top: 0.35rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            opacity: 0.35;
+        }
+
+        @media (min-width: 640px) {
+            .gallery {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.55rem;
+            }
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(0, 0, 0, 0.88);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            cursor: zoom-out;
+        }
+
+        .lightbox.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: min(96vw, 1100px);
+            max-height: 88vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            cursor: default;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text min-h-screen">
+
+    <a href="index.html" class="fixed top-5 left-5 z-50 text-[0.65rem] tracking-[0.2em] uppercase opacity-45 hover:opacity-100 transition-opacity">
+        ← return
+    </a>
+
+    <button id="theme-toggle" class="fixed top-5 right-5 z-50 w-9 h-9 rounded-full flex items-center justify-center opacity-55 hover:opacity-100 transition-opacity" aria-label="Toggle theme">
+        <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+    </button>
+
+    <main class="w-full px-5 py-14 sm:py-16">
+        <div class="w-full max-w-xl mx-auto flex flex-col gap-9">
+
+            <header>
+                <h1 class="text-[clamp(2.25rem,8vw,3.5rem)] font-extralight tracking-tight leading-none">David R.</h1>
+                <p class="mt-2.5 text-sm font-light opacity-50">Cloud &amp; Network Engineering</p>
+                <a href="tel:+16034000699" class="mt-1.5 inline-block text-sm font-light opacity-40 hover:opacity-70 transition-opacity">603-400-0699</a>
+            </header>
+
+            <section class="space-y-2.5">
+                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">About me</h2>
+                <p class="text-sm font-light leading-relaxed opacity-80">
+                    Building towards a career in network & cloud engineering, through hands on experience.
+                    This site is a portal to what I have set up on my current network and have experience in.
+                </p>
+                <p class="text-sm font-normal leading-relaxed opacity-90">
+                    Always looking to learn from people who know more than I do and spreading knowledge with others.
+                </p>
+            </section>
+
+            <section class="space-y-2.5">
+                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Built &amp; run</h2>
+                <ul class="text-sm font-light leading-relaxed opacity-80 space-y-1.5">
+                    <li>DHCP &amp; DNS server, independent of the stock ISP router</li>
+                    <li>VLANs to segment and isolate NAS traffic</li>
+                    <li>Port forwarding on 80 / 443 for my services</li>
+                    <li>Custom self-hosted game library. Backend runs on proxmox with an admin panel for remote management</li>
+                    <li>Building / troubleshooting PCs · Linux · Network troubleshooting</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">How I've Made it Work</h2>
+                <p class="text-sm font-light leading-relaxed opacity-80">
+                    Bedroom was maxed out however I've made room for a 42TB NAS + Proxmox hosts everything above.
+                    HBA wouldn’t fit in the 3D-printed case, so I used a PCIe riser. to effectively connect SAS & SATA HDDS together.
+                    A $50 Marketplace Cisco switch,with cables routed through a beer box, in a closet shared with everything else.
+                    Reprogrammed a bricked BIOS with a CH341A programmer. Had to learn to solder so I wouldn’t fry the IC.
+                </p>
+                <div class="gallery pt-1" aria-label="Setup photos">
+                    <figure>
+                        <img src="images/switch.jpg" alt="Cisco switch" loading="lazy">
+                        <figcaption>Switch</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="images/3dprintednas.jpg" alt="3D printed NAS" loading="lazy">
+                        <figcaption>NAS</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="images/havingtosetuphbacardforsas.jpg" alt="HBA card install for SAS" loading="lazy">
+                        <figcaption>HBA</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="images/ch341aprogrammer.jpg" alt="CH341A BIOS programmer" loading="lazy">
+                        <figcaption>CH341A</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="images/gamelibrary-app.png" alt="Self-hosted game library app" loading="lazy">
+                        <figcaption>Game library</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="space-y-2.5">
+                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Learning</h2>
+                <p class="text-sm font-light leading-relaxed opacity-80">
+                    CompTIA Network+ &amp; Security+ · CCNA next · Cloud infrastructure &amp; AWS
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.classList.remove('dark');
+        }
+        themeToggle.addEventListener('click', () => html.classList.toggle('dark'));
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src, alt) {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt || '';
+            lightbox.hidden = false;
+            requestAnimationFrame(() => lightbox.classList.add('is-open'));
+            document.body.classList.add('lightbox-open');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            document.body.classList.remove('lightbox-open');
+            setTimeout(() => {
+                if (!lightbox.classList.contains('is-open')) {
+                    lightbox.hidden = true;
+                    lightboxImg.removeAttribute('src');
+                }
+            }, 200);
+        }
+
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', () => openLightbox(img.currentSrc || img.src, img.alt));
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+        });
+    </script>
+</body>
+</html>
