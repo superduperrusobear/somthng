@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>about · somthng</title>
-    <script src="https://cdn.tailwindcss.com">
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -105,19 +104,6 @@
         body.lightbox-open {
             overflow: hidden;
         }
-
-        .cert-badge {
-            display: inline-block;
-            font-size: 0.6rem;
-            letter-spacing: 0.06em;
-            padding: 0.1rem 0.5rem;
-            border-radius: 999px;
-            border: 1px solid currentColor;
-            opacity: 0.3;
-            margin-left: 0.35rem;
-            font-weight: 400;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body class="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text min-h-screen">
@@ -138,14 +124,12 @@
     <main class="w-full px-5 py-14 sm:py-16">
         <div class="w-full max-w-xl mx-auto flex flex-col gap-9">
 
-            <!-- HEADER -->
             <header>
                 <h1 class="text-[clamp(2.25rem,8vw,3.5rem)] font-extralight tracking-tight leading-none">David R.</h1>
                 <p class="mt-2.5 text-sm font-light opacity-50">Cloud &amp; Network Engineering</p>
                 <a href="tel:+16034000699" class="mt-1.5 inline-block text-sm font-light opacity-40 hover:opacity-70 transition-opacity">603-400-0699</a>
             </header>
 
-            <!-- ABOUT -->
             <section class="space-y-2.5">
                 <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">About me</h2>
                 <p class="text-sm font-light leading-relaxed opacity-80">
@@ -157,7 +141,6 @@
                 </p>
             </section>
 
-            <!-- BUILT & RUN -->
             <section class="space-y-2.5">
                 <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Built &amp; run</h2>
                 <ul class="text-sm font-light leading-relaxed opacity-80 space-y-1.5">
@@ -169,70 +152,56 @@
                 </ul>
             </section>
 
-            <!-- CERTIFICATIONS — NEW SECTION -->
-            <section class="space-y-2.5">
-                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Certifications</h2>
-                <div class="text-sm font-light leading-relaxed space-y-3">
-                    <!-- Acquired -->
-                    <div>
-                        <span class="opacity-40 text-[0.6rem] tracking-[0.14em] uppercase block mb-0.5">Acquired · 2026</span>
-                        <span class="opacity-85">A+ <span class="opacity-30 text-[0.5rem] tracking-widest uppercase ml-0.5">·</span> Network+</span>
-                    </div>
-                    <!-- In progress -->
-                    <div>
-                        <span class="opacity-40 text-[0.6rem] tracking-[0.14em] uppercase block mb-0.5">In progress</span>
-                        <span class="opacity-85">CCNA <span class="opacity-30 text-[0.5rem] tracking-widest uppercase mx-0.5">·</span> AWS Certified Solutions Architect <span class="opacity-30 text-[0.5rem] tracking-widest uppercase mx-0.5">·</span> Security+</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- HOW I'VE MADE IT WORK -->
             <section class="space-y-3">
                 <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">How I've Made it Work</h2>
                 <p class="text-sm font-light leading-relaxed opacity-80">
                     Bedroom was maxed out however I've made room for a 42TB NAS + Proxmox hosts everything above.
-                    HBA wouldn't fit in the 3D-printed case, so I used a PCIe riser. to effectively connect SAS & SATA HDDS together.
+                    HBA wouldn’t fit in the 3D-printed case, so I used a PCIe riser. to effectively connect SAS & SATA HDDS together.
                     A $50 Marketplace Cisco switch,with cables routed through a beer box, in a closet shared with everything else.
-                    Reprogrammed a bricked BIOS with a CH341A programmer. Had to learn to solder so I wouldn't fry the IC.
+                    Reprogrammed a bricked BIOS with a CH341A programmer. Had to learn to solder so I wouldn’t fry the IC.
                 </p>
                 <div class="gallery pt-1" aria-label="Setup photos">
                     <figure>
-                        <img src="images/switch.jpg" alt="Cisco switch" loading="lazy" />
+                        <img src="images/switch.jpg" alt="Cisco switch" loading="lazy">
                         <figcaption>Switch</figcaption>
                     </figure>
                     <figure>
-                        <img src="images/3dprintednas.jpg" alt="3D printed NAS" loading="lazy" />
+                        <img src="images/3dprintednas.jpg" alt="3D printed NAS" loading="lazy">
                         <figcaption>NAS</figcaption>
                     </figure>
                     <figure>
-                        <img src="images/havingtosetuphbacardforsas.jpg" alt="HBA card install for SAS" loading="lazy" />
+                        <img src="images/havingtosetuphbacardforsas.jpg" alt="HBA card install for SAS" loading="lazy">
                         <figcaption>HBA</figcaption>
                     </figure>
                     <figure>
-                        <img src="images/ch341aprogrammer.jpg" alt="CH341A BIOS programmer" loading="lazy" />
+                        <img src="images/ch341aprogrammer.jpg" alt="CH341A BIOS programmer" loading="lazy">
                         <figcaption>CH341A</figcaption>
                     </figure>
                     <figure>
-                        <img src="images/gamelibrary-app.png" alt="Self-hosted game library app" loading="lazy" />
+                        <img src="images/gamelibrary-app.png" alt="Self-hosted game library app" loading="lazy">
                         <figcaption>Game library</figcaption>
                     </figure>
                 </div>
             </section>
 
-            <!-- LEARNING -->
             <section class="space-y-2.5">
-                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Learning</h2>
+                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Current Certifications</h2>
                 <p class="text-sm font-light leading-relaxed opacity-80">
-                    CompTIA Network+ &amp; Security+ · CCNA next · Cloud infrastructure &amp; AWS
+                    CompTIA A+ (2026)  |  Network+ (2026)
                 </p>
             </section>
 
+            <section class="space-y-2.5">
+                <h2 class="text-[0.65rem] tracking-[0.22em] uppercase opacity-35">Pursuing</h2>
+                <p class="text-sm font-light leading-relaxed opacity-80">
+                    CCNA | Security+ | AWS Certified Solutions Architect | CKA
+                </p>
+            </section>
         </div>
     </main>
 
-    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
-        <img id="lightbox-img" src="" alt="" />
+        <img id="lightbox-img" src="" alt="">
     </div>
 
     <script>
@@ -277,6 +246,5 @@
             if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
         });
     </script>
-
 </body>
 </html>
